@@ -8,15 +8,19 @@ class NewItem extends Component {
         }
     }
 
-    setNewItemName = () => {
-
+    setNewItemName = e => {
+        this.setState({ newItemName: e.target.value })
     }
 
     handleFormSubmit = e => {
         // Stop form from resetting the page
         e.preventDefault();
 
+        // Add checklist item to state in App component
+        this.props.addChecklistItem(this.state.newItemName);
 
+        // reset newItemName on submit so another item can be added
+        this.setState({ newItemName: "" })
     }
     
     render() {
@@ -24,7 +28,7 @@ class NewItem extends Component {
             <form>
                 {/* Checklist Item Name */}
                 <label htmlFor="item-name">New Checklist Item</label>
-                <input id="item-name" type="text"/>
+                <input id="item-name" type="text" value={this.state.newItemName} onChange={this.setNewItemName}/>
 
                 <button onClick={this.handleFormSubmit}>Add New Item</button>
             </form>
