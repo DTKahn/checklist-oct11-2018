@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NewItem from'./components/NewItem';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      checklistItems: []
+    }
+  }
+
+  addChecklistItem = item => {
+  // takes a string as an arg and adds an object to checklistItems in state
+    
+    // Make a copy checklistItems
+    const checklistItems = this.state.checklistItems;
+
+    // Add new item to copy of checklistItem
+    checklistItems.push({checklistItem: item, done: false});
+
+    // Set state with the new version of checklistItems
+    this.setState({
+      checklistItems
+    })
+  }
+
+  componentDidMount(){
+    this.addChecklistItem('test');
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NewItem />
       </div>
     );
   }
