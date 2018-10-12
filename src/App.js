@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import NewItem from'./components/NewItem';
+import Checklist from './components/Checklist';
 
 class App extends Component {
   constructor() {
@@ -25,14 +27,11 @@ class App extends Component {
     })
   }
 
-  componentDidMount(){
-    this.addChecklistItem('test');
-  }
-
   render() {
     return (
       <div className="App">
         <NewItem addChecklistItem={this.addChecklistItem} />
+        <Checklist checklistItems={this.state.checklistItems} />
       </div>
     );
   }
